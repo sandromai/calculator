@@ -1,0 +1,206 @@
+/* ------- LIGHT MODE -------- */
+
+/* general style */
+
+body {
+    margin: 0px;
+    background-color: #e5e5e5;
+}
+
+#container {
+    width: 80vw;
+    height: 75vh;
+    margin: 10vh 10vw 10vh 10vw;
+    border-radius: 1vw;
+    text-align: center;
+    background-color: #e5e5e5;
+}
+
+/* display style */
+
+#display {
+    width: 80vw;
+    height: 15vh;
+    background-color: #d9d9d9;
+    border: 2vh solid #d9d9d9;
+    border-radius: 1vh 1vh 0px 0px;
+    text-align: end;
+    padding: 0px;
+    margin: 0px 0px 3.5vh 0px;
+}
+
+#display p#memory {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    color: white;
+    font-size: 2.5vh;
+    outline: none;
+    padding: 0px;
+    margin: 0;
+}
+
+#display p#current {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    color: white;
+    font-size: 7.5vh;
+    outline: none;
+    padding: 0px;
+    margin: 0;
+}
+
+/* keyboard style*/
+
+#keyboard {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 2vh;
+    margin: 1vh 0px 0px 4vh;
+    background-color: #e5e5e5;
+}
+
+/* buttons style */
+
+button {
+    height: 10vh;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 7vh;
+    text-align: center;
+    outline: none;
+    user-select: none;
+}
+
+button.normal {
+    color: white;
+    background-color: #d9d9d9;
+    transition: 300ms;
+}
+
+button.normal:hover {
+    color: #d9d9d9;
+    background-color: white;
+}
+
+button.special {
+    color: white;
+    background-color: #b3b3b3;
+    transition: 400ms;
+}
+
+button.special:hover {
+    background-color: #f2f2f2;
+    color: #b3b3b3;
+}
+
+div#arrow {
+    width: 2.5vh;
+    height: 2.5vh;
+}
+
+#arrow {
+    border: solid white;
+    border-width: 0 1vh 1vh 0;
+    display: inline-block;
+    padding: 0.5vh;
+    transform: rotate(135deg);
+}
+
+#arrow.hover {
+    border-color: #b3b3b3;
+}
+
+img {
+    width: 7vh;
+    height: 7vh;
+    margin-top: 1.5vh;
+    margin-bottom: 1.5vh;
+}
+
+#img1 {
+    display: inline-block;
+}
+
+#img2 {
+    display: none;
+}
+
+/* footer style */
+
+footer p {
+    position: absolute;
+    bottom: 1.4vh;
+    right: 42.5vw;
+    width: 15vw;
+    margin: 0px;
+    text-align: center;
+    font-size: 1.3vw;
+    font-family: 'Open Sans', sans-serif;
+    user-select: none;
+}
+
+footer span {
+    color: #EC5367;
+    font-weight: bold;
+    user-select: none;
+}
+
+
+
+/* ------- DARK MODE --------- */
+
+
+
+/* general and keyboard style */
+
+body.dark, #container.dark, #keyboard.dark {
+    background-color: #cccccc;
+}
+
+/* display style */
+
+#display.dark {
+    background-color: #8d8d8d;
+    border-color: #8d8d8d;
+}
+
+/* buttons style */
+
+button.normal.dark {
+    background-color: #8d8d8d;
+    color: white;
+    transition: 300ms;
+}
+
+button.normal.dark:hover {
+    background-color: #f2f2f2;
+    color: #8d8d8d;
+}
+
+button.special.dark {
+    background-color: #5a5a5a;
+    color: #d9d9d9;
+    transition: 400ms;
+}
+
+button.special.dark:hover {
+    background-color: #d9d9d9;
+    color: #5a5a5a;
+}
+
+#img1.hidden {
+    display: none;
+}
+
+#img2.visible {
+    display: inline-block;
+}
+
+#arrow.dark {
+    border-color: #d9d9d9;
+}
+
+#arrow.dark.hover {
+    border-color: #5a5a5a;
+}
