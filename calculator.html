@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="https://image.flaticon.com/icons/svg/550/550709.svg">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
-    <title>Calculadora Online</title>
+    <title>Online Calculator</title>
 </head>
 <body>
     <div id="container">
@@ -13,41 +14,44 @@
             <p id="memory"></p>
             <p id="current">0</p>
         </div>
+
         <div id="keyboard">
-                <button class="special" value="ac" onclick="operation(this.value)">AC</button>
-                <button class="normal" value="%" onclick="operation(this.value)">%</button>
-                <button class="normal" value="/" onclick="operation(this.value)">/</button>
-                <button class="special" value="back" onclick="operation(this.value)" onmouseover="hover()" onmouseout="outhover()">
+                <button class="special" value="ac" onclick="calculator(this.value, 'operation')">AC</button>
+                <button class="normal" value="%" onclick="calculator(this.value, 'operation')">%</button>
+                <button class="normal" value="/" onclick="calculator(this.value, 'operation')">/</button>
+                <button class="special" value="back" onclick="calculator(this.value, 'operation')">
                     <div id="arrow"></div>
                 </button>
 
-                <button class="normal" value="7" onclick="number(this.value)">7</button>
-                <button class="normal" value="8" onclick="number(this.value)">8</button>
-                <button class="normal" value="9" onclick="number(this.value)">9</button>
-                <button class="normal" value="x" onclick="operation(this.value)">X</button>
+                <button class="normal" value="7" onclick="calculator(this.value, 'number')">7</button>
+                <button class="normal" value="8" onclick="calculator(this.value, 'number')">8</button>
+                <button class="normal" value="9" onclick="calculator(this.value, 'number')">9</button>
+                <button class="normal" value="x" onclick="calculator(this.value, 'operation')">X</button>
 
-                <button class="normal" value="4" onclick="number(this.value)">4</button>
-                <button class="normal" value="5" onclick="number(this.value)">5</button>
-                <button class="normal" value="6" onclick="number(this.value)">6</button>
-                <button class="normal" value="-" onclick="operation(this.value)">-</button>
+                <button class="normal" value="4" onclick="calculator(this.value, 'number')">4</button>
+                <button class="normal" value="5" onclick="calculator(this.value, 'number')">5</button>
+                <button class="normal" value="6" onclick="calculator(this.value, 'number')">6</button>
+                <button class="normal" value="-" onclick="calculator(this.value, 'operation')">-</button>
 
-                <button class="normal" value="1" onclick="number(this.value)">1</button>
-                <button class="normal" value="2" onclick="number(this.value)">2</button>
-                <button class="normal" value="3" onclick="number(this.value)">3</button>
-                <button class="normal" value="+" onclick="operation(this.value)">+</button>
+                <button class="normal" value="1" onclick="calculator(this.value, 'number')">1</button>
+                <button class="normal" value="2" onclick="calculator(this.value, 'number')">2</button>
+                <button class="normal" value="3" onclick="calculator(this.value, 'number')">3</button>
+                <button class="normal" value="+" onclick="calculator(this.value, 'operation')">+</button>
 
                 <button class="special" onclick="change()">
-                    <img src="https://www.flaticon.com/premium-icon/icons/svg/686/686707.svg" alt="símbolo meia lua" id="img1">
-                    <img src="https://www.flaticon.com/premium-icon/icons/svg/686/686701.svg" alt="símbolo meia lua" id="img2">
+                    <img src="https://www.flaticon.com/premium-icon/icons/svg/686/686707.svg" alt="Meia lua" id="img1">
+                    <img src="https://www.flaticon.com/premium-icon/icons/svg/686/686701.svg" alt="Meia lua" id="img2">
                 </button>
-                <button class="normal" value="0" onclick="number(this.value)">0</button>
-                <button class="normal" value="." onclick="number(this.value)">.</button>
-                <button class="special" value="=" onclick="operation(this.value)">=</button>
+                <button class="normal" value="0" onclick="calculator(this.value, 'number')">0</button>
+                <button class="normal" value="." onclick="calculator(this.value, 'number')">.</button>
+                <button class="special" value="=" onclick="calculator(this.value, 'operation')">=</button>
         </div>
     </div>
+
     <footer>
         <p>Made by <span>Sandro</span></p>
     </footer>
+    
     <script src="./script.js"></script>
 </body>
 </html>

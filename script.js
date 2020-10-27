@@ -1,5 +1,7 @@
+/* VISUAL */
+
 function change() {
-    var buttons = document.querySelectorAll("button");
+    const buttons = document.querySelectorAll("button");
 
     buttons.forEach(button => {
         button.classList.toggle("dark");
@@ -14,45 +16,165 @@ function change() {
     document.querySelector("#arrow").classList.toggle("dark");
 }
 
-function hover() {
-    document.querySelector("#arrow").classList.toggle("hover");
+function showDisplay(value) {
+    if (value == 'ac') {
+        display.innerHTML = '0';
+        displayMem.innerHTML = '';
+    } else if (value == 'back') {
+        //Something
+    } else {
+        displayMem.appendChild(document.createTextNode(num + ' ' + value + ' '));
+    }
 }
 
-function outhover() {
-    document.querySelector("#arrow").classList.toggle("hover");
-}
+/* LOGIC */
 
-var current = document.querySelector("#display p#current");
-var memory = document.querySelector("#display p#memory");
+const display = document.querySelector("#display p#current");
+const displayMem = document.querySelector("#display p#memory");
 
-var num = "";
+var num = '';
 var numValue = 0;
 var memValue = 0;
 
-var op = "";
-var memOp = "";
+var memOp = '';
 
-var calc = 0;
 
-function number(value) {
-    num = num + value;
-    numValue = parseFloat(num);
+function calculator(value, type) {
+    var result = 0;
 
-    current.innerHTML = num;
+    if (memOp == '=') {
+        displayMem.innerHTML = memValue;
+    }
+
+    switch (type) {
+        case 'number':
+            storeNumber(value);
+            break;
+
+        case 'operation':
+            showDisplay(value);
+
+            if (value == '=') {
+                switch (memOp) {
+                    case '+':
+                        display.innerHTML = sum(memValue, numValue);
+                        break;
+
+                    case '-':
+                        display.innerHTML = sub(memValue, numValue);
+                        break;
+
+                    case '/':
+                        display.innerHTML = div(memValue, numValue);
+                        break;
+
+                    case 'x':
+                        display.innerHTML = mult(memValue, numValue);
+                        break;
+                
+                    default:
+                        break;
+                }
+            }
+
+            num = '';
+
+            if (memOp != '=') {
+                memValue = numValue;
+            }
+            
+            memOp = value;
+
+            break;
+    
+        default:
+            break;
+    }
 }
 
+function storeNumber(value) {
+    num += value;
+    numValue = parseFloat(num);
+
+    display.innerHTML = num;
+}
+
+function sum(value1, value2) {
+    result = value1 + value2;
+
+    memValue = result;
+
+    return result;
+}
+
+function sub(value1, value2) {
+    result = value1 - value2;
+
+    memValue = result;
+
+    return result;
+}
+
+function div(value1, value2) {
+    result = value1 / value2;
+
+    memValue = result;
+
+    return result;
+}
+
+function mult(value1, value2) {
+    result = value1 * value2;
+
+    memValue = result;
+
+    return result;
+}
+
+function percent(value1, value2) {
+    if (memOp == '+') {
+        result = value1 + ((value2 / 100) * value1);
+    } else if (memOp == '-') {
+        result = value1 - ((value2 / 100) * value1);
+    } else if (memOp == 'x') {
+        result = value1 * (value2 / 100);
+    } else if (memOp == '/') {
+        result = value1 / (value2 / 100);
+    } else {
+        display.innerHTML = 'ERROR';
+    }
+
+    memValue = result;
+
+    return result;
+}
+
+//var op = "";
+
+/*
+function number(value) {
+    num += value;
+    numValue = parseFloat(num);
+
+    display.innerHTML = num;
+}
+*/
+
+/*
 function operation(value) {
-    op = op + value;
+    op += value;
 
     if (op == 'ac') {
-        memory.innerHTML = "";
-        current.innerHTML = "0";
+        displayMem.innerHTML = "";
+        display.innerHTML = "0";
 
         num = "";
         numValue = 0;
         memValue = 0;
+
         op = "";
         memOp = "";
+
         calc = 0;
     }
 
@@ -62,23 +184,23 @@ function operation(value) {
             numValue = parseFloat(num.slice(0, -1));
             memValue = numValue;
 
-            memory.innerHTML = numValue;
-            current.innerHTML = numValue;
+            displayMem.innerHTML = numValue;
+            display.innerHTML = numValue;
         } else {
             num = '' + memValue;
             numValue = parseFloat(num.slice(0, -1));
             memValue = numValue;
 
-            memory.innerHTML = numValue;
-            current.innerHTML = numValue;
+            displayMem.innerHTML = numValue;
+            display.innerHTML = numValue;
         }
     } else {
-        memory.innerHTML += num + " " + op + " ";
+        displayMem.innerHTML += num + " " + op + " ";
     }
 
     if (op == '=') {
-        memory.innerHTML = ' ';
-        current.innerHTML = memValue;
+        displayMem.innerHTML = ' ';
+        display.innerHTML = memValue;
     }
 
     if (memOp == "") {
@@ -86,16 +208,16 @@ function operation(value) {
     } else if (op == 'back') {
         op = '';
     } else if (memOp == '=') {
-        memory.innerHTML = memValue + " " + op + " ";
+        displayMem.innerHTML = memValue + " " + op + " ";
     }
 
     switch (memOp) {
         case '+':
             if (op == '%') {
-                current.innerHTML = percent(memValue, numValue);
+                display.innerHTML = percent(memValue, numValue);
             } else {
                 if (memValue != 0) {
-                    current.innerHTML = sum(memValue, numValue);
+                    display.innerHTML = sum(memValue, numValue);
                 } else {
                     memValue = numValue;
                 }
@@ -104,10 +226,10 @@ function operation(value) {
 
         case '-':
             if (op == '%') {
-                current.innerHTML = percent(memValue, numValue);
+                display.innerHTML = percent(memValue, numValue);
             } else {
                 if (memValue != 0) {
-                    current.innerHTML = sub(memValue, numValue);
+                    display.innerHTML = sub(memValue, numValue);
                 } else {
                     memValue = numValue;
                 }
@@ -116,10 +238,10 @@ function operation(value) {
 
         case 'x':
             if (op == '%') {
-                current.innerHTML = percent(memValue, numValue);
+                display.innerHTML = percent(memValue, numValue);
             } else {
                 if (memValue != 0) {
-                    current.innerHTML = mult(memValue, numValue);
+                    display.innerHTML = mult(memValue, numValue);
                 } else {
                     memValue = numValue;
                 }
@@ -128,10 +250,10 @@ function operation(value) {
 
         case '/':
             if (op == '%') {
-                current.innerHTML = percent(memValue, numValue);
+                display.innerHTML = percent(memValue, numValue);
             } else {
                 if (memValue != 0) {
-                    current.innerHTML = div(memValue, numValue);
+                    display.innerHTML = div(memValue, numValue);
                 } else {
                     memValue = numValue;
                 }
@@ -178,8 +300,21 @@ function percent(value1, value2) {
     } else if (memOp == '/') {
         calc = value1 / (value2 / 100);
     } else {
-        current.innerHTML = 'ERROR';
+        display.innerHTML = 'ERROR';
     }
     memValue = calc;
     return calc;
 }
+*/
+/*
+function operation(value) {
+    let op = value;
+    //console.log(op);
+
+    showDisplay(op);
+    num = '';
+
+    memOp = op;
+    //console.log(memOp);
+}
+*/
